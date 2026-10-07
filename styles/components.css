@@ -1,0 +1,570 @@
+/* Общий вид виджета */
+.widget {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 16px;
+  background: #fff;
+  border-radius: 22px;
+}
+
+.widget.minimized {
+  align-self: start;
+}
+
+.widget.dragging {
+  opacity: 0.4;
+}
+
+.widget.drop-target {
+  outline: 2px dashed var(--primary);
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.widget-title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.drag-handle,
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+}
+
+.drag-handle {
+  margin-left: -8px;
+  cursor: grab;
+}
+
+.icon-btn:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+/* у крайних виджетов неактивная стрелка бледная */
+.move-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.widget-body {
+  flex: 1;
+}
+
+.widget-body > div {
+  height: 100%;
+}
+
+/* Статус загрузки API */
+.status {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 12px;
+}
+
+.status-success {
+  background: #f3fbdc;
+}
+
+.status-error {
+  background: #fff0f2;
+  color: #c4314b;
+}
+
+.retry-btn {
+  margin-left: 6px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+}
+
+/* Прогресс задач */
+.chart {
+  position: relative;
+  min-height: 260px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.chart-col {
+  position: relative;
+  display: grid;
+  grid-template-rows: 22px 1fr 20px;
+  gap: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.chart-col.selected {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.delta-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--lime);
+  vertical-align: middle;
+}
+
+.delta-icon.down {
+  background: #ffd9df;
+  transform: rotate(180deg);
+}
+
+.chart-bar {
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: var(--hatch), #fbfaff;
+  overflow: hidden;
+}
+
+.chart-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background: #ebe3ff;
+}
+
+.selected .chart-fill {
+  background: linear-gradient(#7a45f2, #b391ff);
+}
+
+.chart-line {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 2px;
+  background: var(--primary);
+}
+
+.chart-tooltip {
+  position: absolute;
+  top: 52px;
+  z-index: 2;
+  width: 190px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 30px -10px rgb(90 50 180 / 0.25);
+  text-align: left;
+  font-weight: 400;
+}
+
+.chart-tooltip.left {
+  right: calc(100% - 22px);
+}
+
+.chart-tooltip.right {
+  left: calc(100% - 22px);
+}
+
+.tooltip-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tooltip-meta {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.badge {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #eefbc4;
+  color: #5b7a00;
+  font-weight: 600;
+}
+
+/* Календарь */
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 3px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.weekdays {
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.day {
+  display: grid;
+  place-items: center;
+  height: 29px;
+}
+
+.day span {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+}
+
+.day.range.everyday { background: var(--lime); }
+.day.range.important { background: var(--primary); color: #fff; }
+.day.range.team { background: var(--lavender); }
+.day.start { margin-left: 2px; border-radius: 15px 0 0 15px; }
+.day.end { margin-right: 2px; border-radius: 0 15px 15px 0; }
+.day.start.end { border-radius: 15px; }
+
+.day.holiday span {
+  background: repeating-linear-gradient(135deg, #bba4f7 0 1.4px, #fff 1.4px 5px);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.day.today span {
+  box-shadow: inset 0 0 0 1.5px var(--primary);
+  font-weight: 700;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 10px 0 6px;
+  font-size: 11.5px;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 50%;
+  vertical-align: -1px;
+}
+
+.dot.important { background: var(--primary); }
+.dot.everyday { background: var(--lime); }
+.dot.team { background: var(--lavender); }
+.dot.holiday { background: repeating-linear-gradient(135deg, #bba4f7 0 1.4px, #fff 1.4px 4px); }
+
+.holidays {
+  font-size: 12px;
+}
+
+.no-holidays {
+  color: var(--muted);
+}
+
+/* Точное время — синяя карточка */
+.widget-clock {
+  background: linear-gradient(165deg, #9b6eff, #7a45f2 55%, #a580ff);
+  color: #fff;
+}
+
+.widget-clock .icon-btn,
+.widget-clock .drag-handle {
+  color: rgb(255 255 255 / 0.75);
+}
+
+.widget-clock .icon-btn:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.15);
+}
+
+.widget-clock :focus-visible {
+  outline-color: #fff;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+}
+
+.clock-zone {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.clock-time {
+  margin-top: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.clock-hm {
+  font-size: 68px;
+  font-weight: 600;
+}
+
+.clock-sec {
+  font-size: 26px;
+  opacity: 0.7;
+}
+
+.clock-date {
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.clock .status {
+  margin-top: auto;
+  background: rgb(255 255 255 / 0.15);
+}
+
+.clock .status-error {
+  background: #fff0f2;
+}
+
+/* Встречи и связь */
+.meetings-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-left: -8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.a1 { background: #ffe1c7; }
+.a2 { background: #ebe3ff; }
+.a3 { background: #d9f1e4; }
+.avatar.more { background: var(--primary); color: #fff; }
+
+.services {
+  display: flex;
+  gap: 6px;
+}
+
+.service {
+  display: grid;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
+.service.on {
+  filter: none;
+  opacity: 1;
+}
+
+.meeting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  padding: 4px 4px 4px 8px;
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 12.5px;
+}
+
+.meeting.joined {
+  background: #eefbc4;
+}
+
+.meeting-title {
+  flex: 1;
+}
+
+.meeting small {
+  color: var(--muted);
+}
+
+.join-btn {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lime);
+}
+
+.join-btn[aria-disabled='true'] {
+  background: #e7e8f1;
+  color: #b5b8c9;
+  cursor: not-allowed;
+}
+
+/* Оценка дня */
+.assessment {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.steps i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 4px;
+  border-radius: 3px;
+  background: #ddd7ee;
+}
+
+.steps i.active {
+  width: 30px;
+  background: var(--lavender);
+}
+
+.question {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.score {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--panel);
+}
+
+.score:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.restart-btn {
+  align-self: flex-start;
+}
+
+/* Цитата */
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quote-text {
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.quote-author {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  font-style: normal;
+  color: var(--muted);
+}
+
+.refresh-btn {
+  align-self: flex-start;
+}
+
+/* Погода */
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.weather-icon svg {
+  display: block;
+}
+
+.weather-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #f0eaff;
+  color: var(--primary);
+}
+
+.weather-temp {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.weather-text,
+.weather-details {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.weather-details {
+  margin-top: 10px;
+}
+
+.weather-source {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.weather-source a {
+  color: var(--primary);
+}
+
+.weather-more {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #f0eaff;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 500;
+}

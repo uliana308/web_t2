@@ -1,0 +1,226 @@
+:root {
+  --panel: #f3f0fd;
+  --surface: #f8f6fe;
+  --text: #1b1c24;
+  --muted: #979bb0;
+  --line: #ece8f7;
+  --primary: #8858ff;
+  --lime: #d4f25a;
+  --lavender: #cbb9ff;
+  --hatch: repeating-linear-gradient(135deg, #e5e0f3 0 1.2px, transparent 1.2px 8px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: linear-gradient(140deg, #b39cff, #ddd3f7);
+}
+
+h1, h2, p, ul, ol, blockquote {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  max-width: 1400px;
+  min-height: calc(100vh - 40px);
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+/* Боковая панель */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 24px 18px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sidebar-title {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.menu a.active {
+  background: #f0eaff;
+}
+
+.menu a:hover {
+  background: var(--surface);
+}
+
+.menu a.active {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.menu svg,
+.profile svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.menu-bottom {
+  margin-top: auto;
+}
+
+.picker {
+  padding: 16px 12px;
+  border: 1.5px dashed #c4abff;
+  border-radius: 16px;
+  background: #faf8ff;
+  text-align: center;
+}
+
+.picker-title {
+  margin-bottom: 2px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.picker-hint {
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.picker-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.picker-list button {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.picker-list button::before {
+  content: '+ ';
+  color: var(--primary);
+}
+
+.picker-list button:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Основная часть */
+.workspace {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px 22px 6px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--lavender), #b391ff);
+  color: #fff;
+}
+
+.board {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
+  align-content: start;
+  gap: 16px;
+  padding: 18px;
+  background: var(--panel);
+  border-radius: 26px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 20px;
+  background: #f0eaff;
+  color: var(--primary);
+  font-weight: 500;
+}

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedly — персональный организатор</title>
+  <link rel="icon" href="img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="logo" href="#">
+        <img src="img/logo.png" alt="" width="32" height="32">
+        Schedly
+      </a>
+
+      <nav>
+        <p class="sidebar-title">Меню</p>
+        <ul class="menu">
+          <li>
+            <a class="active" href="#" aria-current="page">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9.5 21v-6h5v6"/></svg>
+              Дашборд
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 12h6M9 16h4"/></svg>
+              Мои задачи
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              Сообщения
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18M7 15l4-4 3 3 6-6"/></svg>
+              Прогресс
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="sidebar-title">Виджеты</p>
+        <div class="picker">
+          <p class="picker-title">Добавить виджет</p>
+          <p class="picker-hint" id="picker-hint"></p>
+          <div class="picker-list" id="widget-picker">
+            <button type="button" data-type="progress">Прогресс задач</button>
+            <button type="button" data-type="calendar">Календарь</button>
+            <button type="button" data-type="clock">Время</button>
+            <button type="button" data-type="meetings">Встречи</button>
+            <button type="button" data-type="assessment">Оценка дня</button>
+            <button type="button" data-type="quote">Цитата</button>
+            <button type="button" data-type="weather">Погода</button>
+          </div>
+        </div>
+      </div>
+
+      <ul class="menu menu-bottom">
+        <li>
+          <a href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+            Настройки
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div>
+          <h1>Мой день</h1>
+          <p class="subtitle" id="today"></p>
+        </div>
+        <button type="button" class="profile" aria-label="Профиль">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </button>
+      </header>
+
+      <main class="board" id="board" tabindex="-1" aria-label="Виджеты"></main>
+    </div>
+  </div>
+</body>
+</html>
